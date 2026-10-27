@@ -9,6 +9,7 @@
 TEST(StringFunction, strlen) {
     EXPECT_EQ(String::strlen(""), 0);
     EXPECT_EQ(String::strlen("foo"), 3);
+    EXPECT_EQ(String::strlen("abc\0def"), 3);
 }
 
 TEST(StringFunction, strcpy) {
@@ -31,6 +32,9 @@ TEST(StringFunction, strdup) {
     EXPECT_NE(copy, original);
     original[0] = 'Y';
     EXPECT_STREQ(copy, "Hello");
+    copy[1] = 'A';
+    EXPECT_STREQ(copy, "HAllo");
+    EXPECT_STREQ(original, "Yello");
 
     delete[] copy;
 
