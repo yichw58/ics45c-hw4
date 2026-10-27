@@ -120,9 +120,25 @@ char *String::strncat(char *dest, const char *src, int n)
     return dest;
 }
 
-String &String::operator=(String s)
+//Assignment Operators
+String &String::operator=(const String &s)
 {
-    swap(s);
+    if (this != &s)
+    {
+        String copy(s);
+        swap(copy);
+    }
+
+    return *this;
+}
+
+String &String::operator=(String &&s)
+{
+    if (this != &s)
+    {
+        swap(s);
+    }
+
     return *this;
 }
 
