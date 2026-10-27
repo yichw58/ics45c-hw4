@@ -79,7 +79,7 @@ void String::print(std::ostream &out) const
     out << buf;
 }
 
-std::ostream &operator<<(std::ostream &out, String s)
+std::ostream &operator<<(std::ostream &out, const String &s)
 {
     s.print(out);
     return out;
@@ -160,32 +160,32 @@ int String::strncmp(const char *left, const char *right,int n)
 }
 
 // Comparison Operators
-bool String::operator==(String s) const
+bool String::operator==(const String &s) const
 {
     return strcmp(buf, s.buf) == 0;
 }
 
-bool String::operator!=(String s) const
+bool String::operator!=(const String &s) const
 {
     return strcmp(buf, s.buf) != 0;
 }
 
-bool String::operator<=(String s) const
+bool String::operator<=(const String &s) const
 {
     return strcmp(buf, s.buf) <= 0;
 }
 
-bool String::operator>=(String s) const
+bool String::operator>=(const String &s) const
 {
     return strcmp(buf, s.buf) >= 0;
 }
 
-bool String::operator<(String s) const
+bool String::operator<(const String &s) const
 {
     return strcmp(buf, s.buf) < 0;
 }
 
-bool String::operator>(String s) const
+bool String::operator>(const String &s) const
 {
     return strcmp(buf, s.buf) > 0;
 }
@@ -264,7 +264,7 @@ const char *String::strstr(const char *haystack, const char *needle)
     return nullptr;
 }
 
-int String::indexOf(String s) const
+int String::indexOf(const String &s) const
 {
     const char *found = strstr(buf, s.buf);
 
@@ -298,7 +298,7 @@ const char &String::operator[](int index) const
     return buf[index];
 }
 
-String &String::operator+=(String s)
+String &String::operator+=(const String &s)
 {
     int current_len = strlen(buf);
     int added_len = strlen(s.buf);
@@ -314,7 +314,7 @@ String &String::operator+=(String s)
     return *this;
 }
 
-String String::operator+(String s) const
+String String::operator+(const String &s) const
 {
     int total_len = strlen(buf) + strlen(s.buf);
 
