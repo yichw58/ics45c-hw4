@@ -58,6 +58,12 @@ String::String(int length)
     buf = new char[length + 1];
 }
 
+String::String(String &&s)
+{
+    buf = s.buf;
+    s.buf = nullptr;
+}
+
 //Destructor
 String::~String()
 {
